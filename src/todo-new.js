@@ -15,11 +15,16 @@ class TodoNew {
     @on('keypress') onKeypress({ keyCode, target }){
 
         if (keyCode === 13) {
+
+            // create and trigger event
             let event = new CustomEvent('todo-new', {
                 detail: target.value,
                 bubbles: true,
             });
             document.dispatchEvent(event);
+
+            // cleanup target field
+            target.value = '';
         }
     }
 }

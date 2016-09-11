@@ -11,7 +11,7 @@ import './todo-list';
     <section class="todoapp">
         <header class="header">
             <h1>todos</h1>
-            <input is="todo-new" placeholder="What needs to be done?" autofocus="">
+            <input is="todo-new" class="new-todo" placeholder="What needs to be done?" autofocus="">
         </header>
         <section class="main">
             <input class="toggle-all mark-all" id="toggle-all" type="checkbox" />
@@ -45,9 +45,9 @@ class Todomvc {
 
     }
 
-    filter({ params }){
+    filter({ params, target }){
 
-        console.log('filter', params.type);
+        console.log('filter', params.type, target);
     }
 }
 

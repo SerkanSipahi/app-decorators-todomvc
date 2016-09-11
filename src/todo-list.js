@@ -13,7 +13,7 @@ class TodoList {
         this.classList.add('todo-list');
     }
 
-    @on('todo-new', window) onNewTodo( event ){
+    @on('todo-new', document) onNewTodo( event ){
 
         let todoItem = TodoItem.create({ text: event.detail });
         this.appendChild(todoItem);

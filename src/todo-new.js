@@ -7,19 +7,13 @@ import { component, on } from 'app-decorators';
 })
 class TodoNew {
 
-    created(){
-
-        this.classList.add('new-todo');
-    }
-
     @on('keypress') onKeypress({ keyCode, target }){
 
         if (keyCode === 13) {
 
             // create and trigger event
             let event = new CustomEvent('todo-new', {
-                detail: target.value,
-                bubbles: true,
+                detail: target.value
             });
             document.dispatchEvent(event);
 

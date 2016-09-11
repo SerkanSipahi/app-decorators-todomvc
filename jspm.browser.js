@@ -3,8 +3,10 @@ SystemJS.config({
     paths: {
         "github:": "jspm_packages/github/",
         "npm:": "jspm_packages/npm/",
-        "app/": "app/",
         "src/": "src/",
         "test/": "test/"
-    }
+    },
+    map: {
+        "app-decorators": "node_modules/app-decorators/lib/app-decorators",
+    },
 });

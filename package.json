@@ -1,8 +1,7 @@
 {
   "name": "app-decorators-todomvc",
-  "version": "0.1.0",
+  "version": "0.1.001",
   "description": "Todomvc with app-decorators",
-  "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SerkanSipahi/app-decorators-todomvc.git"
@@ -25,10 +24,11 @@
     "webapp"
   ],
   "dependencies": {
-    "app-decorators": "0.6.961",
+    "app-decorators": "0.6.964",
+    "systemjs": "0.19.38",
+    "express": "4.14.0",
     "todomvc-app-css": "2.0.6",
-    "todomvc-common": "1.0.2",
-    "express": "4.14.0"
+    "todomvc-common": "1.0.2"
   },
   "devDependencies": {
     "babel-plugin-transform-class-properties": "6.11.5",
@@ -56,4 +56,3 @@
     "sinon": "1.17.3"
   }
 }
-

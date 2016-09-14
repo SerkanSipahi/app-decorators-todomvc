@@ -34,7 +34,7 @@ class Todomvc {
     created(){
 
         let router = Router.create({ scope: this });
-        router.on('filter /todomvc/filter-{{type}}', ::this.filter);
+        router.on('filter /todomvc/filter-{{ type }}', ::this.onSelectfilter);
     }
 
     @on('changed .mark-all') markAll(){
@@ -45,9 +45,33 @@ class Todomvc {
 
     }
 
-    filter({ params, target }){
+    onSelectfilter({ params, target }){
 
-        console.log('filter', params.type, target);
+
+        this.setSelected(target);
+        this.applyFilter(params.type);
+
+        // 1.) wenn all dann hidden class von allen wegnehmen
+        // 2.) wenn active dann hat "completed" noch "hidden" class
+        // 3.) wenn complted dann außer completed alles andere hidden
+
+
+    }
+
+    applyFilter(type) {
+        
+    }
+
+    setSelected(target){
+
+        // reset filters by removing selected class
+        let elements = this.querySelectorAll('.filters li a');
+        for(let element of elements){
+            element.classList.remove('selected');
+        }
+
+        // add selected class to target
+        target.classList.add('selected');
     }
 }
 

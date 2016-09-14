@@ -7,7 +7,7 @@ import { component, on, view } from 'app-decorators';
 })
 @view(`
     <div class="view">
-        <input class="toggle" type="checkbox" checked="">
+        <input class="toggle" type="checkbox">
         <label>{{ text }}</label>
         <button class="destroy"></button>
     </div>
@@ -15,9 +15,16 @@ import { component, on, view } from 'app-decorators';
 `)
 class TodoItem {
 
+    @on('change input[type="checkbox"]') onCompleted(){
+
+        this.classList.toggle('completed');
+
+    }
+
     @on('click .destroy') onClickDestroy(){
 
         this.parentElement.removeChild(this);
+
     }
 }
 

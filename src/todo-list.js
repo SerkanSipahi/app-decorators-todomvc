@@ -17,7 +17,6 @@ class TodoList {
 
         let todoItem = TodoItem.create({ text: event.detail });
         this.appendChild(todoItem);
-
     }
 }
 

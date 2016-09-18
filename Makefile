@@ -4,9 +4,10 @@ default:
 	@echo "Available Targets:"
 	@echo ""
 	@echo "   make install"
+	@echo "   make start"
 	@echo "   make compile"
-	@echo "   make test"
 	@echo "   make clean"
+	@echo "   make test"
 	@echo ""
 
 install: clean node_modules jspm_packages
@@ -14,6 +15,11 @@ install: clean node_modules jspm_packages
 compile: prepare-compile gulp-compile-watch
 
 publish: prepare-compile gulp-compile npm-publish
+
+start: prepare-compile gulp-compile start-express
+
+start-express:
+	node index.js
 
 node_modules:
 	npm install

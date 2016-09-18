@@ -1,6 +1,6 @@
 {
   "name": "app-decorators-todomvc",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Todomvc with app-decorators",
   "repository": {
     "type": "git",
@@ -54,5 +54,9 @@
     "mocha": "2.5.3",
     "should": "8.3.2",
     "sinon": "1.17.3"
+  },
+  "jspm": {
+    "name": "app-decorators-todomvc",
+    "dependencies": {}
   }
 }

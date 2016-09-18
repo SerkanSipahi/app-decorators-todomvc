@@ -62,6 +62,12 @@ class TodoList {
         });
     }
 
+    triggerCounts(params){
+
+        this::trigger(EVENT_TODO_LIST_COUNTS, params);
+
+    }
+
     count(type){
 
         switch(type) {
@@ -93,12 +99,6 @@ class TodoList {
     getCompleteCount(){
 
         return this.querySelectorAll('li.completed').length;
-
-    }
-
-    triggerCounts(params){
-
-        this::trigger(EVENT_TODO_LIST_COUNTS, params);
 
     }
 

@@ -1,5 +1,12 @@
 
-import { component, on, view } from 'app-decorators';
+import { component, view, on } from 'app-decorators';
+import { trigger } from './utils';
+import { remove, toggleClass } from './dom';
+
+import {
+    EVENT_TODO_COMPLETED_ITEM,
+    EVENT_TODO_DELETEED_ITEM
+} from './todo-events';
 
 @component({
     name: 'todo-item',
@@ -15,17 +22,32 @@ import { component, on, view } from 'app-decorators';
 `)
 class TodoItem {
 
-    @on('change input[type="checkbox"]') onCompleted(){
+    @on('change li input[type="checkbox"]') onCompleted(){
 
-        this.classList.toggle('completed');
+        this::toggleClass('completed');
+        this.complete();
+
+    }
+
+    @on('click li button.destroy') onDeleted(){
+
+        this.remove();
 
     }
 
-    @on('click .destroy') onClickDestroy(){
+    complete(){
 
-        this.parentElement.removeChild(this);
+        this::trigger(EVENT_TODO_COMPLETED_ITEM);
 
     }
+
+    remove() {
+
+        this::trigger(EVENT_TODO_DELETEED_ITEM);
+        this::remove();
+
+    }
+
 }
 
 export {

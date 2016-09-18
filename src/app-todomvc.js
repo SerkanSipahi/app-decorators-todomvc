@@ -1,5 +1,8 @@
 
 import { component, view, on, Router } from 'app-decorators';
+import { EVENT_TODO_LIST_COUNTS } from './todo-events';
+import { forEach } from './utils';
+import { addClass, removeClass, show, hide, text } from './dom';
 
 import './todo-new';
 import './todo-list';
@@ -11,12 +14,12 @@ import './todo-list';
     <section class="todoapp">
         <header class="header">
             <h1>todos</h1>
-            <input is="todo-new" class="new-todo" placeholder="What needs to be done?" autofocus="">
+            <input is="todo-new" trigger-target=".todo-list" class="new-todo" placeholder="What needs to be done?" autofocus="">
         </header>
         <section class="main">
             <input class="toggle-all mark-all" id="toggle-all" type="checkbox" />
             <label for="toggle-all">Mark all as complete</label>
-            <ul is="todo-list"></ul>
+            <ul class="todo-list" is="todo-list"></ul>
         </section>
         <footer class="footer">
             <span class="todo-count"><strong>0</strong> items left</span>
@@ -33,8 +36,23 @@ class Todomvc {
 
     created(){
 
-        let router = Router.create({ scope: this });
-        router.on('filter /filter-{{type}}', ::this._onSelectfilter);
+        this._initRouter();
+
+    }
+
+    @on(EVENT_TODO_LIST_COUNTS) onListCounts({ params }){
+
+        let $ = ::this.querySelector;
+        let { count, left } = params;
+
+        $('.todo-count strong')::text(left);
+
+        if(count > 0){
+            $('footer')::show();
+        } else {
+            $('footer')::hide();
+        }
+
     }
 
     @on('changed .mark-all') markAll(){
@@ -43,6 +61,14 @@ class Todomvc {
 
     @on('click .clear-completed') clearCompleted(){
 
+        this.querySelector('[is="todo-list"]').clear();
+
+    }
+
+    _initRouter(){
+
+        let router = Router.create({ scope: this });
+        router.on('filter /filter-{{type}}', ::this._onSelectfilter);
     }
 
     _onSelectfilter({ params, target }){
@@ -51,10 +77,12 @@ class Todomvc {
          * set filter
          */
         // reset filters by removing selected class
-        this._dom('remove', '.filters li a', 'selected');
+        this.querySelectorAll('.filters li a')::forEach(
+            element => element::removeClass('selected')
+        );
 
         // add selected class to target
-        target.classList.add('selected');
+        target::addClass('selected');
 
         /**
          * apply filter
@@ -79,7 +107,9 @@ class Todomvc {
 
     _applyFilterAll(){
 
-        this._dom('remove', 'ul[is="todo-list"] li', 'hidden');
+        this.querySelectorAll( 'ul[is="todo-list"] li')::forEach(
+            element => element::removeClass('hidden')
+        );
     }
 
     _applyFilterActive(){
@@ -96,16 +126,9 @@ class Todomvc {
 
     _dom(type, selector, cls){
 
-        let elements = this.querySelectorAll(selector);
-        for(let element of elements){
-            element.classList[type](cls);
-        }
-    }
-
-    _updateItemsLeftCount(){
-
-        let count = this.querySelectorAll('ul[is="todo-list"] li:not(.completed)').length;
-        this.querySelector('todo-count').textContent = count;
+        this.querySelectorAll(selector)::forEach(
+            element => element.classList[type](cls)
+        );
     }
 }
 

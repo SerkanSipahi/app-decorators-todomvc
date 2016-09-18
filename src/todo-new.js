@@ -1,5 +1,7 @@
 
 import { component, on } from 'app-decorators';
+import { trigger } from './utils';
+import { EVENT_TODO_NEW_ITEM } from './todo-events';
 
 @component({
     name: 'todo-new',
@@ -7,20 +9,20 @@ import { component, on } from 'app-decorators';
 })
 class TodoNew {
 
-    @on('keypress') onKeypress({ keyCode, target }){
+    @on('keypress') onKeypress({ keyCode }){
 
-        if (keyCode === 13) {
-
-            // create and trigger event
-            let event = new CustomEvent('todo-new', {
-                detail: target.value
-            });
-            document.dispatchEvent(event);
-
-            // cleanup target field
-            target.value = '';
+        if (keyCode !== 13 || this.value === ''){
+            return;
         }
+
+        let { value } = this.attributes.getNamedItem('trigger-target');
+        let scope     = document.querySelector(value);
+        scope::trigger(EVENT_TODO_NEW_ITEM, this.value);
+
+        this.value = '';
+
     }
+
 }
 
 export {

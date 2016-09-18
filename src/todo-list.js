@@ -1,7 +1,7 @@
 
 import { component, on } from 'app-decorators';
 import { TodoItem } from './todo-item';
-import { trigger } from './trigger';
+import { forEach, trigger } from './utils';
 
 import {
     EVENT_TODO_NEW_ITEM,
@@ -16,33 +16,40 @@ import {
 })
 class TodoList {
 
-
-    @on(EVENT_TODO_COMPLETED_ITEM) onCompleted({ target }){
-
-        target.classList.toggle('completed');
-
-        this._updateCounts();
-
-    }
-
-    @on(EVENT_TODO_DELETEED_ITEM) onDeleted({ target }){
-
-        target.parentElement.removeChild(target);
-
-        this._updateCounts();
-
-    }
-
-    @on(EVENT_TODO_NEW_ITEM, document) onNewItem({ params }){
+    @on(EVENT_TODO_NEW_ITEM) onNewItem({ params }){
 
         let todoItem = TodoItem.create({ text: params });
         this.appendChild(todoItem);
 
-        this._updateCounts();
+        this.update();
 
     }
 
-    _updateCounts(){
+    @on(EVENT_TODO_COMPLETED_ITEM) onCompleted(){
+
+        this.update();
+
+    }
+
+    @on(EVENT_TODO_DELETEED_ITEM) onDeleted(){
+
+        this.update();
+
+    }
+
+    clear(){
+
+        this.querySelectorAll('li')::forEach(
+            element => element.remove()
+        );
+
+        this.triggerCounts({
+            count: 0, left: 0, completed: 0
+        });
+
+    }
+
+    update(){
 
         // shortcut for querySelectorAll
         let $         = ::this.querySelectorAll;
@@ -51,9 +58,14 @@ class TodoList {
         let left      = $('li:not(.completed)').length;
         let completed = $('li.completed').length;
 
-        trigger(EVENT_TODO_LIST_COUNTS, {
+        this.triggerCounts({
             count, left, completed
-        }, this);
+        });
+    }
+
+    triggerCounts(params){
+
+        this::trigger(EVENT_TODO_LIST_COUNTS, params);
 
     }
 

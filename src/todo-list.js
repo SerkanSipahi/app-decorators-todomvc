@@ -1,4 +1,3 @@
-
 import { component, on } from 'app-decorators';
 import { TodoItem } from './todo-item';
 import { forEach, trigger } from './utils';

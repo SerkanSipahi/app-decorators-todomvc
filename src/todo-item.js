@@ -1,4 +1,3 @@
-
 import { component, view, on } from 'app-decorators';
 import { trigger } from './utils';
 import { remove, toggleClass } from './dom';

@@ -1,4 +1,3 @@
-
 import { component, on } from 'app-decorators';
 import { trigger } from './utils';
 import { attribute } from './dom';

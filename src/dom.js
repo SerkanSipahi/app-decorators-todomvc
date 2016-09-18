@@ -1,4 +1,3 @@
-
 let hasClass = function(cls) {
     this.classList.contains(cls);
     return this;

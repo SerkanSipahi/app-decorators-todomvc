@@ -1,4 +1,3 @@
-
 let trigger = function(event, params) {
 
     let customEvent = new CustomEvent(event, { bubbles: true });

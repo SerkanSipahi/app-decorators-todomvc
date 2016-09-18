@@ -1,4 +1,3 @@
-
 import { component, view, on, Router } from 'app-decorators';
 import { toggleClass, addClass, removeClass, show, hide, text, find, click } from './dom';
 import { forEach } from './utils';

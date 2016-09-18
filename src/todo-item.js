@@ -24,26 +24,24 @@ class TodoItem {
 
     @on('change li input[type="checkbox"]') onCompleted(){
 
-        this::toggleClass('completed');
-        this.complete();
+        this::trigger(EVENT_TODO_COMPLETED_ITEM);
 
     }
 
     @on('click li button.destroy') onDeleted(){
 
-        this.remove();
+        this::trigger(EVENT_TODO_DELETEED_ITEM);
 
     }
 
     complete(){
 
-        this::trigger(EVENT_TODO_COMPLETED_ITEM);
+        this::toggleClass('completed');
 
     }
 
     remove() {
 
-        this::trigger(EVENT_TODO_DELETEED_ITEM);
         this::remove();
 
     }

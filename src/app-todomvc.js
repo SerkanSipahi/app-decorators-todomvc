@@ -39,7 +39,7 @@ class Todomvc {
         this._initRouter();
 
     }
-
+    
     @on(EVENT_TODO_LIST_COUNTS) onListCounts({ params }){
 
         let $ = ::this.querySelector;

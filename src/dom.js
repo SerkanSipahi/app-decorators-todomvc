@@ -15,6 +15,10 @@ let toggleClass = function(cls) {
     this.classList.toggle(cls);
 };
 
+let append = function(node){
+    this.appendChild(node);
+};
+
 let remove = function() {
     this.parentElement.removeChild(this);
 };
@@ -45,6 +49,7 @@ export {
     addClass,
     removeClass,
     toggleClass,
+    append,
     remove,
     show,
     hide,

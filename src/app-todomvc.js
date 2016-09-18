@@ -1,8 +1,7 @@
 import { component, view, on, Router } from 'app-decorators';
 import { toggleClass, addClass, removeClass, show, hide, text, find, click } from './dom';
 import { forEach } from './utils';
-
-import { EVENT_TODO_LIST_COUNTS } from './todo-events';
+import { EVENT_LIST_COUNTS } from './todo-list';
 
 import './todo-new';
 import './todo-list';
@@ -40,7 +39,7 @@ class Todomvc {
 
     }
 
-    @on(EVENT_TODO_LIST_COUNTS) onListCounts({ params }){
+    @on(EVENT_LIST_COUNTS) onListCounts({ params }){
 
         let $ = ::this.querySelector;
         let { count, left } = params;

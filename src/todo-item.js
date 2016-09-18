@@ -1,11 +1,9 @@
 import { component, view, on } from 'app-decorators';
-import { trigger } from './utils';
 import { remove, toggleClass } from './dom';
+import { trigger } from './utils';
 
-import {
-    EVENT_TODO_COMPLETED_ITEM,
-    EVENT_TODO_DELETEED_ITEM
-} from './todo-events';
+export const EVENT_ITEM_COMPLETED = 'ITEM_COMPLETED';
+export const EVENT_ITEM_DELETEED  = 'ITEM_DELETEED';
 
 @component({
     name: 'todo-item',
@@ -19,17 +17,17 @@ import {
     </div>
     <input class="edit" value="abc">
 `)
-class TodoItem {
+export class TodoItem {
 
     @on('change li input[type="checkbox"]') onCompleted(){
 
-        this::trigger(EVENT_TODO_COMPLETED_ITEM);
+        this::trigger(EVENT_ITEM_COMPLETED);
 
     }
 
     @on('click li button.destroy') onDeleted(){
 
-        this::trigger(EVENT_TODO_DELETEED_ITEM);
+        this::trigger(EVENT_ITEM_DELETEED);
 
     }
 
@@ -45,8 +43,4 @@ class TodoItem {
 
     }
 
-}
-
-export {
-    TodoItem
 }

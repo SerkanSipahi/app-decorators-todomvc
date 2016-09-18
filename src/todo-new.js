@@ -1,13 +1,13 @@
 import { component, on } from 'app-decorators';
 import { trigger } from './utils';
 import { attribute } from './dom';
-import { EVENT_TODO_NEW_ITEM } from './todo-events';
+import { EVENT_ITEM_NEW } from './todo-list';
 
 @component({
     name: 'todo-new',
     extends: 'input',
 })
-class TodoNew {
+export class TodoNew {
 
     @on('keypress') onKeypress({ keyCode }){
 
@@ -17,14 +17,10 @@ class TodoNew {
 
         let selector = this::attribute('target');
         let scope    = document.querySelector(selector);
-        scope::trigger(EVENT_TODO_NEW_ITEM, this.value);
+        scope::trigger(EVENT_ITEM_NEW, this.value);
 
         this.value = '';
 
     }
 
-}
-
-export {
-    TodoNew
 }

@@ -54,16 +54,47 @@ class TodoList {
 
     update(){
 
-        // shortcut for querySelectorAll
-        let $         = ::this.querySelectorAll;
-        // event args
-        let count     = $('li').length;
-        let left      = $('li:not(.completed)').length;
-        let completed = $('li.completed').length;
+        let count     = this.getAllCount();
+        let left      = this.getLeftCount();
+        let completed = this.getCompleteCount();
 
         this.triggerCounts({
             count, left, completed
         });
+    }
+
+    count(type){
+
+        switch(type) {
+            case 'all':
+                return this.getAllCount();
+            break;
+            case 'left':
+                return this.getLeftCount();
+            break;
+            case 'complete':
+                return this.getCompleteCount();
+            break;
+        }
+
+    }
+
+    getAllCount(){
+
+        return this.querySelectorAll('li').length;
+
+    }
+
+    getLeftCount(){
+
+        return this.querySelectorAll('li:not(.completed)').length;
+
+    }
+
+    getCompleteCount(){
+
+        return this.querySelectorAll('li.completed').length;
+
     }
 
     triggerCounts(params){

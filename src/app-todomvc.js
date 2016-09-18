@@ -1,8 +1,9 @@
 
 import { component, view, on, Router } from 'app-decorators';
-import { EVENT_TODO_LIST_COUNTS } from './todo-events';
+import { toggleClass, addClass, removeClass, show, hide, text, find, click } from './dom';
 import { forEach } from './utils';
-import { hasClass, addClass, removeClass, show, hide, text } from './dom';
+
+import { EVENT_TODO_LIST_COUNTS } from './todo-events';
 
 import './todo-new';
 import './todo-list';
@@ -39,7 +40,7 @@ class Todomvc {
         this._initRouter();
 
     }
-    
+
     @on(EVENT_TODO_LIST_COUNTS) onListCounts({ params }){
 
         let $ = ::this.querySelector;
@@ -55,7 +56,21 @@ class Todomvc {
 
     }
 
-    @on('changed .mark-all') markAll(){
+    @on('change .mark-all') markAll(){
+
+        let $             = ::this.querySelectorAll;
+        let maxCount      = $('[is="todo-list"]')[0].count('all');
+        let completeCount = $('[is="todo-list"]')[0].count('complete');
+
+        if(completeCount > 0 && completeCount < maxCount){
+            $('ul[is="todo-list"] li:not(.completed)')::forEach(
+                el => el::find('input')::click()::addClass('completed')
+            );
+        } else {
+            $('ul[is="todo-list"] li')::forEach(
+                el => el::find('input')::click()::toggleClass('completed')
+            );
+        }
 
     }
 
@@ -92,7 +107,7 @@ class Todomvc {
 
     _applyFilterAll($){
 
-        $( 'ul[is="todo-list"] li')::forEach(
+        $('ul[is="todo-list"] li')::forEach(
             el => el::removeClass('hidden')
         );
     }
@@ -124,13 +139,13 @@ class Todomvc {
         switch(type) {
             case 'all':
                 this._applyFilterAll($);
-                break;
+            break;
             case 'active':
                 this._applyFilterActive($);
-                break;
+            break;
             case 'completed':
                 this._applyFilterCompleted($);
-                break;
+            break;
         }
     }
 }

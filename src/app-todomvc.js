@@ -2,7 +2,7 @@
 import { component, view, on, Router } from 'app-decorators';
 import { EVENT_TODO_LIST_COUNTS } from './todo-events';
 import { forEach } from './utils';
-import { addClass, removeClass, show, hide, text } from './dom';
+import { hasClass, addClass, removeClass, show, hide, text } from './dom';
 
 import './todo-new';
 import './todo-list';
@@ -14,7 +14,7 @@ import './todo-list';
     <section class="todoapp">
         <header class="header">
             <h1>todos</h1>
-            <input is="todo-new" trigger-target=".todo-list" class="new-todo" placeholder="What needs to be done?" autofocus="">
+            <input is="todo-new" target=".todo-list" class="new-todo" placeholder="What needs to be done?" autofocus="">
         </header>
         <section class="main">
             <input class="toggle-all mark-all" id="toggle-all" type="checkbox" />
@@ -78,7 +78,7 @@ class Todomvc {
          */
         // reset filters by removing selected class
         this.querySelectorAll('.filters li a')::forEach(
-            element => element::removeClass('selected')
+            el => el::removeClass('selected')
         );
 
         // add selected class to target
@@ -90,45 +90,48 @@ class Todomvc {
         this._applyFilter(params.type);
     }
 
+    _applyFilterAll($){
+
+        $( 'ul[is="todo-list"] li')::forEach(
+            el => el::removeClass('hidden')
+        );
+    }
+
+    _applyFilterActive($){
+
+        $('ul[is="todo-list"] li')::forEach(
+            el => el::removeClass('hidden')
+        );
+        $('ul[is="todo-list"] li.completed')::forEach(
+            el => el::addClass('hidden')
+        );
+    }
+
+    _applyFilterCompleted($){
+
+        $('ul[is="todo-list"] li')::forEach(
+            el => el::removeClass('hidden')
+        );
+        $('ul[is="todo-list"] li:not(.completed)')::forEach(
+            el => el::addClass('hidden')
+        );
+    }
+
     _applyFilter(type){
+
+        let $ = ::this.querySelectorAll;
 
         switch(type) {
             case 'all':
-                this._applyFilterAll();
+                this._applyFilterAll($);
                 break;
             case 'active':
-                this._applyFilterActive();
+                this._applyFilterActive($);
                 break;
             case 'completed':
-                this._applyFilterCompleted();
+                this._applyFilterCompleted($);
                 break;
         }
-    }
-
-    _applyFilterAll(){
-
-        this.querySelectorAll( 'ul[is="todo-list"] li')::forEach(
-            element => element::removeClass('hidden')
-        );
-    }
-
-    _applyFilterActive(){
-
-        this._dom('remove', 'ul[is="todo-list"] li', 'hidden');
-        this._dom('add',    'ul[is="todo-list"] li.completed', 'hidden');
-    }
-
-    _applyFilterCompleted(){
-
-        this._dom('remove', 'ul[is="todo-list"] li', 'hidden');
-        this._dom('add'   , 'ul[is="todo-list"] li:not(.completed)', 'hidden');
-    }
-
-    _dom(type, selector, cls){
-
-        this.querySelectorAll(selector)::forEach(
-            element => element.classList[type](cls)
-        );
     }
 }
 

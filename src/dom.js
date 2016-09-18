@@ -31,7 +31,17 @@ let text = function(text){
     this.textContent = text;
 };
 
+let attribute = function(key, value){
+
+    if(key && value){
+        this.setAttribute(key, value);
+    } else if(key && !value){
+        return this.getAttribute(key);
+    }
+};
+
 export {
+    hasClass,
     addClass,
     removeClass,
     toggleClass,
@@ -39,4 +49,5 @@ export {
     show,
     hide,
     text,
+    attribute,
 };

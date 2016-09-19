@@ -4,8 +4,10 @@
 
 
 ```bash
+git clone https://github.com/SerkanSipahi/app-decorators-todomvc.git
+cd app-decorators-todomvc
 make install
 make start
 ```
 
-http://localhost:3000/
+open following url `http://localhost:3000/` in your browser.

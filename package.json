@@ -24,7 +24,7 @@
     "webapp"
   ],
   "dependencies": {
-    "app-decorators": "0.6.964",
+    "app-decorators": "0.6.965",
     "systemjs": "0.19.38",
     "express": "4.14.0",
     "todomvc-app-css": "2.0.6",

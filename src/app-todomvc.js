@@ -100,51 +100,7 @@ class Todomvc {
         /**
          * apply filter
          */
-        this._applyFilter(params.type);
-    }
-
-    _applyFilterAll($){
-
-        $('ul[is="todo-list"] li')::forEach(
-            el => el::removeClass('hidden')
-        );
-    }
-
-    _applyFilterActive($){
-
-        $('ul[is="todo-list"] li')::forEach(
-            el => el::removeClass('hidden')
-        );
-        $('ul[is="todo-list"] li.completed')::forEach(
-            el => el::addClass('hidden')
-        );
-    }
-
-    _applyFilterCompleted($){
-
-        $('ul[is="todo-list"] li')::forEach(
-            el => el::removeClass('hidden')
-        );
-        $('ul[is="todo-list"] li:not(.completed)')::forEach(
-            el => el::addClass('hidden')
-        );
-    }
-
-    _applyFilter(type){
-
-        let $ = ::this.querySelectorAll;
-
-        switch(type) {
-            case 'all':
-                this._applyFilterAll($);
-            break;
-            case 'active':
-                this._applyFilterActive($);
-            break;
-            case 'completed':
-                this._applyFilterCompleted($);
-            break;
-        }
+        this.querySelector('ul[is="todo-list"]').filter(params.type)
     }
 }
 

@@ -1,7 +1,7 @@
 import { component, on } from 'app-decorators';
 import { TodoItem } from './todo-item';
 import { forEach, trigger } from './utils';
-import { append, removeClass, addClass } from './dom';
+import { append, removeClass, addClass, find, click, toggleClass, findAll } from './dom';
 import { EVENT_ITEM_COMPLETED, EVENT_ITEM_DELETEED } from './todo-item';
 
 export const EVENT_ITEM_NEW    = 'ITEM_NEW';
@@ -12,6 +12,10 @@ export const EVENT_LIST_COUNTS = 'LIST_COUNTS';
     extends: 'ul',
 })
 export class TodoList {
+
+    /**
+     * Events
+     */
 
     @on(EVENT_ITEM_NEW) onNewItem({ params }){
 
@@ -36,13 +40,17 @@ export class TodoList {
 
     }
 
+    /**
+     * Public methods
+     */
+
     clear(){
 
         this.querySelectorAll('li')::forEach(
             element => element.remove()
         );
 
-        this.triggerCounts({
+        this._triggerCounts({
             count: 0, left: 0, completed: 0
         });
 
@@ -54,15 +62,9 @@ export class TodoList {
         let left      = this._getLeftCount();
         let completed = this._getCompleteCount();
 
-        this.triggerCounts({
+        this._triggerCounts({
             count, left, completed
         });
-    }
-
-    triggerCounts(params){
-
-        this::trigger(EVENT_LIST_COUNTS, params);
-
     }
 
     count(type){
@@ -96,6 +98,33 @@ export class TodoList {
                 this._applyFilterCompleted($);
             break;
         }
+
+    }
+
+    toggle(){
+
+        let maxCount      = this.count('all');
+        let completeCount = this.count('complete');
+
+        if(completeCount > 0 && completeCount < maxCount){
+            this::findAll('li:not(.completed)')::forEach(
+                el => el::find('input')::click()::addClass('completed')
+            );
+        } else {
+            this::findAll('li')::forEach(
+                el => el::find('input')::click()::toggleClass('completed')
+            );
+        }
+
+    }
+
+    /**
+     * Private methods
+     */
+
+    _triggerCounts(params){
+
+        this::trigger(EVENT_LIST_COUNTS, params);
 
     }
 

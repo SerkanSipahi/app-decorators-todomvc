@@ -1,5 +1,5 @@
 import { component, view, on, Router } from 'app-decorators';
-import { toggleClass, addClass, removeClass, show, hide, text, find, click } from './dom';
+import { addClass, removeClass, show, hide, text, click } from './dom';
 import { forEach } from './utils';
 import { EVENT_LIST_COUNTS } from './todo-list';
 
@@ -54,21 +54,9 @@ class Todomvc {
 
     }
 
-    @on('change .mark-all') markAll(){
+    @on('change .toggle-all') toggleAll(){
 
-        let $             = ::this.querySelectorAll;
-        let maxCount      = $('[is="todo-list"]')[0].count('all');
-        let completeCount = $('[is="todo-list"]')[0].count('complete');
-
-        if(completeCount > 0 && completeCount < maxCount){
-            $('ul[is="todo-list"] li:not(.completed)')::forEach(
-                el => el::find('input')::click()::addClass('completed')
-            );
-        } else {
-            $('ul[is="todo-list"] li')::forEach(
-                el => el::find('input')::click()::toggleClass('completed')
-            );
-        }
+        this.querySelector('ul[is="todo-list"]').toggle();
 
     }
 

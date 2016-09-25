@@ -47,7 +47,7 @@ prepare-compile:
 	ln -s ../jspm_packages jspm_packages; \
 	ln -s ../node_modules node_modules; \
 	cd ..; \
-	cp jspm.browser.js jspm.config.js index.html dist; \
+	cp jspm.config.js index.html dist; \
 
 npm-publish:
 	rm -rf lib; mkdir lib; \

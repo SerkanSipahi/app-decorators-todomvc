@@ -1,6 +1,6 @@
 {
   "name": "app-decorators-todomvc",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Todomvc with app-decorators",
   "repository": {
     "type": "git",

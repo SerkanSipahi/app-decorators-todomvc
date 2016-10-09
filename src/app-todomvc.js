@@ -1,7 +1,6 @@
 import { component, view, on, action } from 'app-decorators';
 import { addClass, removeClass, show, hide, text, click } from './dom';
 import { forEach } from './utils';
-import { EVENT_LIST_COUNTS } from './todo-list';
 
 import './todo-new';
 import './todo-list';
@@ -33,8 +32,7 @@ import './todo-list';
 `)
 class Todomvc {
 
-
-    @on(EVENT_LIST_COUNTS) onListCounts({ params }){
+    @on('count [is="todo-list"]') onListCount({ params }){
 
         let $ = ::this.querySelector;
         let { count, left } = params;

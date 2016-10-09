@@ -2,10 +2,6 @@ import { component, on } from 'app-decorators';
 import { TodoItem } from './todo-item';
 import { forEach, trigger } from './utils';
 import { append, removeClass, addClass, find, click, toggleClass, findAll } from './dom';
-import { EVENT_ITEM_COMPLETED, EVENT_ITEM_DELETEED } from './todo-item';
-
-export const EVENT_ITEM_NEW    = 'ITEM_NEW';
-export const EVENT_LIST_COUNTS = 'LIST_COUNTS';
 
 @component({
     name: 'todo-list',
@@ -17,7 +13,7 @@ export class TodoList {
      * Events
      */
 
-    @on(EVENT_ITEM_NEW) onNewItem({ params }){
+    @on('new-item') onNewItem({ params }){
 
         let todoItem = TodoItem.create({ text: params });
         this::append(todoItem);
@@ -26,14 +22,14 @@ export class TodoList {
 
     }
 
-    @on(EVENT_ITEM_COMPLETED) onCompleted({ target }){
+    @on('complete [is="todo-item"]') onComplete({ target }){
 
         target.complete();
         this.update();
 
     }
 
-    @on(EVENT_ITEM_DELETEED) onDeleted({ target }){
+    @on('delete [is="todo-item"]') onDelete({ target }){
 
         target.remove();
         this.update();
@@ -124,7 +120,7 @@ export class TodoList {
 
     _triggerCounts(params){
 
-        this::trigger(EVENT_LIST_COUNTS, params);
+        this::trigger('count', params);
 
     }
 

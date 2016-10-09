@@ -1,7 +1,6 @@
 import { component, on } from 'app-decorators';
 import { trigger } from './utils';
 import { attribute } from './dom';
-import { EVENT_ITEM_NEW } from './todo-list';
 
 @component({
     name: 'todo-new',
@@ -17,7 +16,7 @@ export class TodoNew {
 
         let selector = this::attribute('target');
         let scope    = document.querySelector(selector);
-        scope::trigger(EVENT_ITEM_NEW, this.value);
+        scope::trigger('new-item', this.value);
 
         this.value = '';
 

@@ -1,4 +1,4 @@
-import { component, view, on, Router } from 'app-decorators';
+import { component, view, on, action } from 'app-decorators';
 import { addClass, removeClass, show, hide, text, click } from './dom';
 import { forEach } from './utils';
 import { EVENT_LIST_COUNTS } from './todo-list';
@@ -33,11 +33,6 @@ import './todo-list';
 `)
 class Todomvc {
 
-    created(){
-
-        this._initRouter();
-
-    }
 
     @on(EVENT_LIST_COUNTS) onListCounts({ params }){
 
@@ -66,13 +61,7 @@ class Todomvc {
 
     }
 
-    _initRouter(){
-
-        let router = Router.create({ scope: this });
-        router.on('filter /filter-{{type}}', ::this._onSelectfilter);
-    }
-
-    _onSelectfilter({ params, target }){
+    @action('/filter-{{type}}') filterItems({ params, target }){
 
         /**
          * set filter

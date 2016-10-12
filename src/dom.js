@@ -1,44 +1,72 @@
+import { Eventhandler } from 'app-decorators';
+import { forEach } from './utils';
+
+let _getNodeList = (value) => {
+    return value.forEach ? value : [ value ];
+};
+
 let hasClass = function(cls) {
+
     this.classList.contains(cls);
     return this;
 };
 
 let addClass = function(cls) {
-    this.classList.add(cls);
+
+    let nodeList = _getNodeList(this);
+    nodeList::forEach(el => el.classList.add(cls));
+
     return this;
 };
 
 let removeClass = function(cls) {
-    this.classList.remove(cls);
+
+    let nodeList = _getNodeList(this);
+    nodeList::forEach(el => el.classList.remove(cls));
+
     return this;
 };
 
 let toggleClass = function(cls) {
-    this.classList.toggle(cls);
+
+    let nodeList = _getNodeList(this);
+    nodeList::forEach(el => el.classList.toggle(cls));
+
     return this;
 };
 
 let append = function(node){
+
     this.appendChild(node);
     return this;
 };
 
 let remove = function() {
+
     this.parentElement.removeChild(this);
 };
 
 let show = function(){
-    this.style.display = 'block';
+
+    let nodeList = _getNodeList(this);
+    nodeList::forEach(el => el.style.display = 'block');
+
     return this;
 };
 
 let hide = function(){
-    this.style.display = 'none';
+
+    let nodeList = _getNodeList(this);
+    nodeList::forEach(el => el.style.display = 'none');
+
     return this;
 };
 
 let text = function(text){
-    this.textContent = text;
+
+    let nodeList = _getNodeList(this);
+    nodeList::forEach(el => el.textContent = text);
+
     return this;
 };
 
@@ -60,9 +88,25 @@ let findAll = function(selector){
     return this.querySelectorAll(selector);
 };
 
+let parent = function(){
+    return this.parentElement;
+};
+
 let click = function(){
 
     this.click();
+    return this;
+
+};
+
+let addListener = function(eventName, callback){
+
+    let listener = Eventhandler.create({
+        element: this,
+    });
+
+    listener.on(eventName, callback);
+
     return this;
 
 };
@@ -80,5 +124,7 @@ export {
     attribute,
     find,
     findAll,
+    parent,
     click,
+    addListener,
 };

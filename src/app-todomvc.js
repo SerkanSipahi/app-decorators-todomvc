@@ -1,6 +1,5 @@
 import { component, view, on, action } from 'app-decorators';
 import { addClass, removeClass, show, hide, text, click } from './dom';
-import { forEach } from './utils';
 
 import './todo-new';
 import './todo-list';
@@ -65,9 +64,7 @@ class Todomvc {
          * set filter
          */
         // reset filters by removing selected class
-        this.querySelectorAll('.filters li a')::forEach(
-            el => el::removeClass('selected')
-        );
+        this.querySelectorAll('.filters li a')::removeClass('selected');
 
         // add selected class to target
         target::addClass('selected');

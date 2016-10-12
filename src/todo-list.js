@@ -126,29 +126,19 @@ export class TodoList {
 
     _applyFilterAll($){
 
-        $('ul[is="todo-list"] li')::forEach(
-            el => el::removeClass('hidden')
-        );
+        $('ul[is="todo-list"] li')::removeClass('hidden');
     }
 
     _applyFilterActive($){
 
-        $('ul[is="todo-list"] li')::forEach(
-            el => el::removeClass('hidden')
-        );
-        $('ul[is="todo-list"] li.completed')::forEach(
-            el => el::addClass('hidden')
-        );
+        $('ul[is="todo-list"] li')::removeClass('hidden');
+        $('ul[is="todo-list"] li.completed')::addClass('hidden');
     }
 
     _applyFilterCompleted($){
 
-        $('ul[is="todo-list"] li')::forEach(
-            el => el::removeClass('hidden')
-        );
-        $('ul[is="todo-list"] li:not(.completed)')::forEach(
-            el => el::addClass('hidden')
-        );
+        $('ul[is="todo-list"] li')::removeClass('hidden');
+        $('ul[is="todo-list"] li:not(.completed)')::addClass('hidden');
     }
 
     _getAllCount(){

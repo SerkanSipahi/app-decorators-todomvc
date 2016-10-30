@@ -24,13 +24,14 @@
     "webapp"
   ],
   "dependencies": {
-    "app-decorators": "0.6.969",
+    "app-decorators": "0.6.970-alpha.1",
     "express": "4.14.0",
     "systemjs": "0.19.38",
     "todomvc-app-css": "2.0.6",
     "todomvc-common": "1.0.2"
   },
   "devDependencies": {
+    "babel-plugin-app-decorators-component": "1.0.0-alpha.3",
     "babel-plugin-transform-class-properties": "6.11.5",
     "babel-plugin-transform-decorators-legacy": "1.3.4",
     "babel-plugin-transform-function-bind": "6.8.0",

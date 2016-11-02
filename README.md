@@ -1,6 +1,9 @@
 # app-decorators-todomvc
-[![dependency Status](https://david-dm.org/SerkanSipahi/app-decorators-todomvc/dev-status.svg)](https://david-dm.org/SerkanSipahi/app-decorators-todomvc)
-[![devDependency Status](https://david-dm.org/SerkanSipahi/app-decorators-todomvc/dev-status.svg)](https://david-dm.org/SerkanSipahi/app-decorators-todomvc?type=dev)
+
+<p>
+    <a href="https://david-dm.org/SerkanSipahi/app-decorators-todomvc"><img src="https://david-dm.org/SerkanSipahi/david.svg" alt="Dependency Status"></a>
+    <a href="https://david-dm.org/SerkanSipahi/app-decorators-todomvc/?type=dev"><img src="https://david-dm.org/SerkanSipahi/david/dev-status.svg" alt="devDependency Status"></a>
+</p>
 
 
 ```bash

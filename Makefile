@@ -10,7 +10,7 @@ default:
 	@echo "   make test"
 	@echo ""
 
-install: clean node_modules jspm_packages
+install: clean node_modules
 
 compile: prepare-compile gulp-compile-watch
 
@@ -37,7 +37,7 @@ test:
 	$(karma) start
 
 clean:
-	rm -rf node_modules jspm_packages
+	make clean-dist; rm -rf node_modules jspm_packages
 
 clean-dist:
 	rm -rf dist

@@ -5,6 +5,11 @@
     <a href="https://david-dm.org/SerkanSipahi/app-decorators-todomvc/?type=dev"><img src="https://david-dm.org/SerkanSipahi/david/dev-status.svg" alt="devDependency Status"></a>
 </p>
 
+---
+<p align="center">
+  <img src="./assets/todomvc-app-decorators.png" alt="todomvc app-decorators">
+</p>
+---
 
 ```bash
 git clone https://github.com/SerkanSipahi/app-decorators-todomvc.git

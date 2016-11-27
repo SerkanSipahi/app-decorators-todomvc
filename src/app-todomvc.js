@@ -4,9 +4,6 @@ import { addClass, removeClass, show, hide, text, click } from './dom';
 import './todo-new';
 import './todo-list';
 
-@component({
-    name: 'app-todomvc',
-})
 @view(`
     <section class="todoapp">
         <header class="header">
@@ -29,6 +26,9 @@ import './todo-list';
         </footer>
     </section>
 `)
+@component({
+    name: 'app-todomvc',
+})
 class Todomvc {
 
     @on('count [is="todo-list"]') onListCount({ params }){

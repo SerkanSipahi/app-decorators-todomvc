@@ -7,7 +7,7 @@ import { append, removeClass, addClass, find, click, toggleClass, findAll } from
     name: 'todo-list',
     extends: 'ul',
 })
-export class TodoList {
+class TodoList {
 
     /**
      * Events
@@ -159,4 +159,8 @@ export class TodoList {
 
     }
 
+}
+
+export {
+    TodoList
 }

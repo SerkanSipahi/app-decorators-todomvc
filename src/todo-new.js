@@ -6,7 +6,7 @@ import { attribute } from './dom';
     name: 'todo-new',
     extends: 'input',
 })
-export class TodoNew {
+class TodoNew {
 
     @on('keypress') onKeypress({ keyCode }){
 
@@ -22,4 +22,8 @@ export class TodoNew {
 
     }
 
+}
+
+export {
+    TodoNew
 }

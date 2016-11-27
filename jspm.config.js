@@ -1,5 +1,28 @@
 SystemJS.config({
-    transpiler: false
+    transpiler: false,
+    paths: {
+        "github:": "jspm_packages/github/",
+        "npm:": "jspm_packages/npm/",
+        "app-dec:": "node_modules/app-decorators/",
+        "src/": "src/",
+        "test/": "test/",
+    },
+    map: {
+        "app-decorators": "app-dec:lib/app-decorators",
+        "app-decorators-helper/register-customelement": "app-dec:lib/libs/customelement",
+        "app-decorators-helper/random-storage": "app-dec:lib/libs/random-storage"
+    },
+    packages: {
+        "node_modules": {
+            "defaultExtension": "js"
+        },
+        "src": {
+            "defaultExtension": "js"
+        },
+        "test": {
+            "defaultExtension": "js"
+        }
+    }
 });
 
 SystemJS.config({
@@ -8,25 +31,6 @@ SystemJS.config({
         "npm:*.json",
         "github:*/*.json"
     ],
-});
-
-SystemJS.config({
-    defaultJSExtensions: true,
-    paths: {
-        "github:": "jspm_packages/github/",
-        "npm:": "jspm_packages/npm/",
-        "src/": "src/",
-        "test/": "test/"
-    },
-    map: {
-        "app-decorators": "node_modules/app-decorators/lib/app-decorators",
-    },
-    packages: {
-        "node_modules": {
-            defaultExtension: 'js',
-        },
-        "src": {
-            defaultExtension: 'js',
-        }
-    },
+    map: {},
+    packages: {}
 });

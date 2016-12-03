@@ -1,6 +1,11 @@
 SystemJS.config({
     transpiler: false,
     defaultJSExtensions: true,
+    packageConfigPaths: [
+        "npm:@*/*.json",
+        "npm:*.json",
+        "github:*/*.json"
+    ],
     paths: {
         "github:": "jspm_packages/github/",
         "npm:": "jspm_packages/npm/",
@@ -13,14 +18,4 @@ SystemJS.config({
         "app-decorators-helper/register-customelement": "app-dec:lib/libs/customelement",
         "app-decorators-helper/random-storage": "app-dec:lib/libs/random-storage"
     },
-});
-
-SystemJS.config({
-    packageConfigPaths: [
-        "npm:@*/*.json",
-        "npm:*.json",
-        "github:*/*.json"
-    ],
-    map: {},
-    packages: {}
 });

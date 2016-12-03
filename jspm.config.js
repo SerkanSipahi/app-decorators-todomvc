@@ -14,8 +14,20 @@ SystemJS.config({
         "test/": "test/",
     },
     map: {
-        "app-decorators": "app-dec:lib/app-decorators",
+        "bootstrap": "app-dec:lib/bootstrap",
+        "app-decorators": "app-dec:lib/index",
         "app-decorators-helper/register-customelement": "app-dec:lib/libs/customelement",
         "app-decorators-helper/random-storage": "app-dec:lib/libs/random-storage"
     },
+    packages: {
+        "node_modules": {
+            "defaultExtension": "js"
+        },
+        "src": {
+            "defaultExtension": "js"
+        },
+        "test": {
+            "defaultExtension": "js"
+        }
+    }
 });

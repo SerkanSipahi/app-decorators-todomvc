@@ -21,7 +21,14 @@
         <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
     </footer>
     <script>
-        System.import('src/app-todomvc');
+        Promise.all([
+            System.import('bootstrap'),
+            System.import('src/app-todomvc'),
+        ]).then(function(){
+            console.log('TodoMvc: running!');
+        }).catch(function(){
+            console.warn('TodoMvc: something gone wrong!');
+        });
     </script>
 </body>
 </html>

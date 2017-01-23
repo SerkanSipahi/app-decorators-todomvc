@@ -6,9 +6,6 @@
 
     <link rel="stylesheet" href="./node_modules/todomvc-common/base.css">
     <link rel="stylesheet" href="./node_modules/todomvc-app-css/index.css">
-
-    <script src="./node_modules/systemjs/dist/system.js"></script>
-    <script src="./jspm.config.js"></script>
 </head>
 <body>
     <app-todomvc></app-todomvc>
@@ -20,7 +17,10 @@
         </p>
         <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
     </footer>
+    <script src="./node_modules/systemjs/dist/system.js"></script>
+    <script src="./jspm.config.js"></script>
     <script>
+
         Promise.all([
             System.import('app-decorators/bootstrap'),
             System.import('src/app-todomvc'),
@@ -29,6 +29,7 @@
         }).catch(function(){
             console.warn('TodoMvc: something gone wrong!');
         });
+
     </script>
 </body>
 </html>

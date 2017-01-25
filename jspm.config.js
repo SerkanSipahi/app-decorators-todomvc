@@ -1,6 +1,5 @@
 SystemJS.config({
     transpiler: false,
-    defaultJSExtensions: true,
     packageConfigPaths: [
         "npm:@*/*.json",
         "npm:*.json",

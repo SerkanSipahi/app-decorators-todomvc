@@ -19,17 +19,9 @@
     </footer>
     <script src="./node_modules/systemjs/dist/system.js"></script>
     <script src="./jspm.config.js"></script>
+    <script src="./bootstrap.js"></script>
     <script>
-
-        Promise.all([
-            System.import('app-decorators/bootstrap'),
-            System.import('src/app-todomvc'),
-        ]).then(function(){
-            console.log('TodoMvc: running!');
-        }).catch(function(){
-            console.warn('TodoMvc: something gone wrong!');
-        });
-
+        bootstrap('src/app-todomvc');
     </script>
 </body>
 </html>

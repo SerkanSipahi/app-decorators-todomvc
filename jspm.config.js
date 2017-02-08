@@ -1,4 +1,4 @@
-SystemJS.config({
+System.config({
     transpiler: false,
     packageConfigPaths: [
         "npm:@*/*.json",

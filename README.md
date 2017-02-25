@@ -1,4 +1,4 @@
-This repository is deprecated. Its moved to: [app-decorators/packages/app-decorators-todomvc](https://github.com/SerkanSipahi/SerkanSipahi/app-decorators/tree/master/packages/app-decorators-todomvc)
+This repository is deprecated. Its moved to: [app-decorators/packages/app-decorators-todomvc](https://github.com/SerkanSipahi/app-decorators/tree/master/packages/app-decorators-todomvc)
 ---
 # app-decorators-todomvc
 
